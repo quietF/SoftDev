@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.13)  2 FEB 2017 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.13)  2 FEB 2017 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -208,7 +208,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout3 = `B098688-SD-PR.toc'.
 
  [1]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 61.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 72.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -216,16 +216,16 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 <img/input_file.png, id=15, 894.34125pt x 897.3525pt>
 File: img/input_file.png Graphic file (type png)
  <use img/input_file.png>
-Package pdftex.def Info: img/input_file.png used on input line 78.
+Package pdftex.def Info: img/input_file.png used on input line 89.
 (pdftex.def)             Requested size: 197.99815pt x 198.66417pt.
 
 <img/input_rand.png, id=16, 893.3375pt x 899.36pt>
 File: img/input_rand.png Graphic file (type png)
  <use img/input_rand.png>
-Package pdftex.def Info: img/input_rand.png used on input line 85.
+Package pdftex.def Info: img/input_rand.png used on input line 96.
 (pdftex.def)             Requested size: 197.99815pt x 199.32819pt.
 
-[1 <./img/input_file.png> <./img/input_rand.png>]
+[1]
 Package epstopdf Info: Source file: <img/percentage.eps>
 (epstopdf)                    date: 2016-11-24 03:24:09
 (epstopdf)                    size: 20845 bytes
@@ -234,15 +234,14 @@ Package epstopdf Info: Source file: <img/percentage.eps>
 (epstopdf)                    size: 6983 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/percentage-eps-convert
 ed-to.pdf img/percentage.eps>
-(epstopdf)             \includegraphics on input line 131.
+(epstopdf)             \includegraphics on input line 142.
 Package epstopdf Info: Output file is already uptodate.
-
-<img/percentage-eps-converted-to.pdf, id=23, 361.35pt x 252.945pt>
+ <img/percentage-eps-converted-to.pdf, id=23, 361.35pt x 252.945pt>
 File: img/percentage-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/percentage-eps-converted-to.pdf>
 Package pdftex.def Info: img/percentage-eps-converted-to.pdf used on input line
- 131.
+ 142.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
 Package epstopdf Info: Source file: <img/percentage_rand.eps>
 (epstopdf)                    date: 2016-11-24 03:53:28
@@ -252,7 +251,7 @@ Package epstopdf Info: Source file: <img/percentage_rand.eps>
 (epstopdf)                    size: 6993 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/percentage_rand-eps-co
 nverted-to.pdf img/percentage_rand.eps>
-(epstopdf)             \includegraphics on input line 139.
+(epstopdf)             \includegraphics on input line 150.
 Package epstopdf Info: Output file is already uptodate.
 
 <img/percentage_rand-eps-converted-to.pdf, id=24, 361.35pt x 252.945pt>
@@ -260,12 +259,13 @@ File: img/percentage_rand-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/percentage_rand-eps-converted-to.pdf>
 Package pdftex.def Info: img/percentage_rand-eps-converted-to.pdf used on input
- line 139.
+ line 150.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
- [2 <./img/percentage-eps-converted-to.pdf> <./img/percentage_rand-eps-converte
-d-to.pdf>]
+ [2 <./img/input_file.png> <./img/input_rand.png>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 157.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 168.
+ [3 <./img/percentage-eps-converted-to.pdf> <./img/percentage_rand-eps-converte
+d-to.pdf>]
 Package epstopdf Info: Source file: <img/map_size_area_30.eps>
 (epstopdf)                    date: 2016-11-25 00:36:33
 (epstopdf)                    size: 19853 bytes
@@ -275,15 +275,15 @@ Package epstopdf Info: Source file: <img/map_size_area_30.eps>
 (epstopdf)                    size: 6328 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/map_size_area_30-eps-c
 onverted-to.pdf img/map_size_area_30.eps>
-(epstopdf)             \includegraphics on input line 200.
+(epstopdf)             \includegraphics on input line 211.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/map_size_area_30-eps-converted-to.pdf, id=38, 361.35pt x 252.945pt>
+<img/map_size_area_30-eps-converted-to.pdf, id=43, 361.35pt x 252.945pt>
 File: img/map_size_area_30-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/map_size_area_30-eps-converted-to.pdf>
 Package pdftex.def Info: img/map_size_area_30-eps-converted-to.pdf used on inpu
-t line 200.
+t line 211.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
 Package epstopdf Info: Source file: <img/map_size_side_30.eps>
 (epstopdf)                    date: 2016-11-25 00:39:43
@@ -294,15 +294,15 @@ Package epstopdf Info: Source file: <img/map_size_side_30.eps>
 (epstopdf)                    size: 6517 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/map_size_side_30-eps-c
 onverted-to.pdf img/map_size_side_30.eps>
-(epstopdf)             \includegraphics on input line 207.
+(epstopdf)             \includegraphics on input line 218.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/map_size_side_30-eps-converted-to.pdf, id=39, 361.35pt x 252.945pt>
+<img/map_size_side_30-eps-converted-to.pdf, id=44, 361.35pt x 252.945pt>
 File: img/map_size_side_30-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/map_size_side_30-eps-converted-to.pdf>
 Package pdftex.def Info: img/map_size_side_30-eps-converted-to.pdf used on inpu
-t line 207.
+t line 218.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
 Package epstopdf Info: Source file: <img/map_size_area.eps>
 (epstopdf)                    date: 2016-11-24 12:44:54
@@ -312,15 +312,15 @@ Package epstopdf Info: Source file: <img/map_size_area.eps>
 (epstopdf)                    size: 6678 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/map_size_area-eps-conv
 erted-to.pdf img/map_size_area.eps>
-(epstopdf)             \includegraphics on input line 225.
+(epstopdf)             \includegraphics on input line 236.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/map_size_area-eps-converted-to.pdf, id=40, 361.35pt x 252.945pt>
+<img/map_size_area-eps-converted-to.pdf, id=45, 361.35pt x 252.945pt>
 File: img/map_size_area-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/map_size_area-eps-converted-to.pdf>
 Package pdftex.def Info: img/map_size_area-eps-converted-to.pdf used on input l
-ine 225.
+ine 236.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
 Package epstopdf Info: Source file: <img/map_size_side.eps>
 (epstopdf)                    date: 2016-11-24 07:18:53
@@ -330,50 +330,49 @@ Package epstopdf Info: Source file: <img/map_size_side.eps>
 (epstopdf)                    size: 6862 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/map_size_side-eps-conv
 erted-to.pdf img/map_size_side.eps>
-(epstopdf)             \includegraphics on input line 232.
+(epstopdf)             \includegraphics on input line 243.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/map_size_side-eps-converted-to.pdf, id=41, 361.35pt x 252.945pt>
+<img/map_size_side-eps-converted-to.pdf, id=46, 361.35pt x 252.945pt>
 File: img/map_size_side-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/map_size_side-eps-converted-to.pdf>
 Package pdftex.def Info: img/map_size_side-eps-converted-to.pdf used on input l
-ine 232.
+ine 243.
 (pdftex.def)             Requested size: 197.99815pt x 138.59912pt.
- [3]
-<img/cProfile_30_100.png, id=47, 632.3625pt x 361.35pt>
+ [4 <./img/map_size_area_30-eps-converted-to.pdf> <./img/map_size_side_30-eps-c
+onverted-to.pdf> <./img/map_size_area-eps-converted-to.pdf> <./img/map_size_sid
+e-eps-converted-to.pdf>]
+<img/cProfile_30_100.png, id=70, 632.3625pt x 361.35pt>
 File: img/cProfile_30_100.png Graphic file (type png)
 
 <use img/cProfile_30_100.png>
-Package pdftex.def Info: img/cProfile_30_100.png used on input line 250.
+Package pdftex.def Info: img/cProfile_30_100.png used on input line 261.
 (pdftex.def)             Requested size: 206.332pt x 117.90051pt.
 
-Overfull \hbox (18.75848pt too wide) in paragraph at lines 250--252
+Overfull \hbox (18.75848pt too wide) in paragraph at lines 261--263
 []  
  []
 
-<img/cProfile_60_100.png, id=49, 632.3625pt x 351.3125pt>
+<img/cProfile_60_100.png, id=72, 632.3625pt x 351.3125pt>
 File: img/cProfile_60_100.png Graphic file (type png)
 
 <use img/cProfile_60_100.png>
-Package pdftex.def Info: img/cProfile_60_100.png used on input line 258.
+Package pdftex.def Info: img/cProfile_60_100.png used on input line 269.
 (pdftex.def)             Requested size: 206.332pt x 114.62549pt.
 
-Overfull \hbox (18.75848pt too wide) in paragraph at lines 258--260
+Overfull \hbox (18.75848pt too wide) in paragraph at lines 269--271
 []  
  []
 
-[4 <./img/map_size_area_30-eps-converted-to.pdf> <./img/map_size_side_30-eps-co
-nverted-to.pdf> <./img/map_size_area-eps-converted-to.pdf> <./img/map_size_side
--eps-converted-to.pdf>]
 <img/cProfile_30_1000.png, id=73, 642.4pt x 371.3875pt>
 File: img/cProfile_30_1000.png Graphic file (type png)
 
 <use img/cProfile_30_1000.png>
-Package pdftex.def Info: img/cProfile_30_1000.png used on input line 284.
+Package pdftex.def Info: img/cProfile_30_1000.png used on input line 295.
 (pdftex.def)             Requested size: 206.332pt x 119.28278pt.
 
-Overfull \hbox (18.75848pt too wide) in paragraph at lines 284--286
+Overfull \hbox (18.75848pt too wide) in paragraph at lines 295--297
 []  
  []
 
@@ -381,15 +380,15 @@ Overfull \hbox (18.75848pt too wide) in paragraph at lines 284--286
 File: img/cProfile_60_1000.png Graphic file (type png)
 
 <use img/cProfile_60_1000.png>
-Package pdftex.def Info: img/cProfile_60_1000.png used on input line 292.
+Package pdftex.def Info: img/cProfile_60_1000.png used on input line 303.
 (pdftex.def)             Requested size: 206.332pt x 121.17552pt.
 
-Overfull \hbox (18.75848pt too wide) in paragraph at lines 292--294
+Overfull \hbox (18.75848pt too wide) in paragraph at lines 303--305
 []  
  []
 
-[5 <./img/cProfile_30_100.png> <./img/cProfile_60_100.png> <./img/cProfile_30_1
-000.png> <./img/cProfile_60_1000.png>] [6] (./B098688-SD-PR.aux) ) 
+[5 <./img/cProfile_30_100.png> <./img/cProfile_60_100.png>] [6 <./img/cProfile_
+30_1000.png> <./img/cProfile_60_1000.png>] (./B098688-SD-PR.aux) ) 
 Here is how much of TeX's memory you used:
  2018 strings out of 494953
  28121 string characters out of 6180976
@@ -397,7 +396,7 @@ Here is how much of TeX's memory you used:
  5266 multiletter control sequences out of 15000+600000
  29741 words of font info for 44 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,12n,41p,239b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,12n,41p,547b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/t
 exlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
@@ -406,7 +405,7 @@ lic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on B098688-SD-PR.pdf (8 pages, 355988 bytes).
+Output written on B098688-SD-PR.pdf (8 pages, 357257 bytes).
 PDF statistics:
  111 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream

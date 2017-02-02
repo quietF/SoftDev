@@ -2,5 +2,5 @@
 \contentsline {section}{\numberline {2}Land-to-Water Percentage}{2}
 \contentsline {subsection}{\numberline {2.1}Randomly Generated Landscapes}{3}
 \contentsline {section}{\numberline {3}Input Landscape File Size}{3}
-\contentsline {section}{\numberline {4}Code Profiling}{4}
+\contentsline {section}{\numberline {4}Code Profiling}{5}
 \contentsline {section}{\numberline {5}Conclusions}{6}
