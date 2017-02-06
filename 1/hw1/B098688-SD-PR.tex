@@ -3,6 +3,7 @@
 \usepackage{epcc}
 %\usepackage{graphics}
 \usepackage{graphicx}
+\usepackage{pgfgantt}
 
 % This example file shows how a thesis can be laid out using Latex. It
 % does not use any special local features so should be portable to other
@@ -172,7 +173,40 @@ cases, for $30\%$ and $60\%$ land-to-water ratios. This method was probably the
 most helpful in obtaining information on each function used. It helped 
 determine where any optimization attempts should be directed at.
 
-\section{Land-to-Water Percentage}
+\section{Project Planning}
+
+\newganttchartelement{voidbar}{
+    voidbar/.style={
+        draw=black,
+        top color=black!25,
+        bottom color=black!23
+    }}
+    \begin{ganttchart}[x unit=0.42cm, 
+        y unit title=0.7cm,
+        y unit chart=0.5cm, vgrid, title label font=\footnotesize,
+        canvas/.style={draw=black, dotted}]{1}{28}
+        \gantttitle{Hours}{28}\\
+        \gantttitlelist{0,5,10,15,20,25,30,35,40,45,50,55,60,65}{2} \\
+
+        \ganttbar{A}{1}{2}     \\ 
+        \ganttbar{B}{3}{6}    \\   
+        \ganttbar{C}{7}{8}              \\ 
+        \ganttbar{D}{9}{12} \\
+        \ganttbar{E}{13}{16} \\
+        \ganttbar{F}{17}{20} \\
+        \ganttbar{G}{7}{8} \\
+        \ganttbar{H}{9}{12} \\
+        \ganttbar{I}{13}{16} \\
+        \ganttbar{J}{16}{21} \\
+        \ganttbar{K}{7}{7} \\
+        \ganttbar{L}{8}{11} \\
+        \ganttbar{M}{12}{14} \\
+        \ganttbar{N}{15}{16} \\
+        \ganttbar{O}{17}{20} \\
+        \ganttbar{P}{21}{24} \\
+        \ganttbar{Q}{25}{28} \\
+        \ganttbar{R}{28}{28} \\
+    \end{ganttchart}
 
 One of the important restrictions of the model is that neither hares nor 
 pumas can live in sections that represent water. Therefore it is 
