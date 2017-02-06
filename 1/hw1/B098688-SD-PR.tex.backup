@@ -46,13 +46,13 @@
 
 \section{Introduction}
 
-This report will serve as a series of guidelines on how to proceed with the improvement and creation of a web application. The web application has been initiated by an unknown party (very likely the professor of the course), and it must be enhanced such that it fulfills the base requirements for it. A skeleton of the web application that has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
+This report will provide as a series of guidelines on how to proceed with the improvement and creation of a web application. The web application's code has been initiated by an unknown party (very likely the professor of the course), and it must be enhanced such that it fulfills the base requirements for it. The skeleton of the web application has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
 
 The first part of the report will briefly outline what is the intended project, and the background needed to understand what it is attempting to achieve. While this is being discussed, some of the important factors to keep in mind are highlighted. After this is done, several comments regarding issues in the provided code are made. Afterwards, solutions for most of these are proposed, and eventually presented in a \textit{time/effort} estimation plan. Finally, risk analysis and management strategy are posed.
 
 \section{Project Specifications}
 
-The idea is to further develop a web based application that allows the user to generate a squad for a tabletop game - with certain constraints. The application must allow users to create and edit squads with an unchangeable name, no more than 10 members, and no fewer than 1. The user begins with a Captain, that can become better with time, and has a limited amount of money to hire other regular team members, that cannot improve with time, and a special member, the Ensign, who, like the Captain, can evolve in time.
+The goal is to further develop a web based application that allows the user to generate a squad for a tabletop game - with certain constraints. The application must allow users to create and edit squads with an unchangeable name, no more than 10 members, and no fewer than 1. The user begins with a Captain, that can become better with time, and has a limited amount of money to hire other regular team members, that cannot improve with time, and a special member, the Ensign, who, like the Captain, can evolve in time.
 
 The idea of the web application is to check that all constraints are fulfilled for a user's squad, and that if one or more are violated, a warning message is displayed such that the user is able to modify their decision. The base stats for each team member are shown in the Annex.
 
@@ -100,7 +100,7 @@ Now, for a new squad the conditions are as follows:
                              \end{enumerate}
 \end{enumerate}
 
-In order for a new squad to be generated it 
+In order for a new squad to be generated, it must fulfill all the requirements above. 
 
 
 
