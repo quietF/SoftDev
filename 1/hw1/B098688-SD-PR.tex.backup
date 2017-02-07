@@ -63,7 +63,6 @@ A new squad begins with \textbf{one} Captain and \textbf{500} credits. For a new
 
 \begin{enumerate}
  \item Squad Name.
- \item Player Name.
  \item Positive number of credits.
  \item Captain: \begin{enumerate}
                  \item \textbf{ONE} per squad.
@@ -110,8 +109,6 @@ When editing a squad there is also a set of conditions that have to be met. They
 
 \begin{enumerate}
  \item Can hire squad members as long as the total number of squad members does not exceed \textbf{10}, and as long as the squad's number of credits does not become negative.
- \item Captain and Ensign can gain EXPERIENCE.
- \item Acquired EXPERIENCE can be traded for upgrades for Captain and Ensign.
  \item 
 \end{enumerate}
 
