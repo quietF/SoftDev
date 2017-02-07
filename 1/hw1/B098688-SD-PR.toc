@@ -1,8 +1,9 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {2}Project Specifications}{1}
-\contentsline {subsection}{\numberline {2.1}New Squad}{1}
+\contentsline {subsection}{\numberline {2.1}New Squad}{2}
+\contentsline {subsection}{\numberline {2.2}Edit Squad}{3}
 \contentsline {section}{\numberline {3}Identified Problems}{3}
-\contentsline {section}{\numberline {4}Project Planning}{4}
+\contentsline {section}{\numberline {4}Project Planning}{5}
 \contentsline {subsection}{\numberline {4.1}Randomly Generated Landscapes}{5}
 \contentsline {section}{\numberline {5}Input Landscape File Size}{6}
 \contentsline {section}{\numberline {6}Code Profiling}{7}
