@@ -4,6 +4,7 @@
 %\usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{pgfgantt}
+\usepackage{array}
 
 % This example file shows how a thesis can be laid out using Latex. It
 % does not use any special local features so should be portable to other
@@ -47,9 +48,11 @@
 
 \section{Introduction}
 
-This report will provide a series of guidelines on how to proceed with the creation of a web application. The web application's code has been initiated by an unknown party, that is written in \texttt{python} and uses the web framework \texttt{flask}. Said code must be enhanced such that it fulfills the base requirements for the project. The skeleton of the web application has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
+This report will provide a series of guidelines on how to proceed with the creation of a web application. The web application's code has been initiated by an unknown party, that is written in \texttt{html}, \texttt{python} and uses the web framework \texttt{flask}. Said code must be enhanced such that it fulfills the base requirements for the project. The skeleton of the web application has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
 
 The first part of the report will briefly outline what is the intended project, and the background needed to understand what it is attempting to achieve. While this is being discussed, some of the important factors to keep in mind are highlighted. After this is done, several comments regarding issues in the provided code are made. Afterwards, solutions for most of these are proposed, and eventually presented in a \textit{time/effort} estimation plan. Finally, once the project has been understood, and its purpose is clear, risk analysis and management strategy are posed.
+
+The management strategy in this small project will help make a successful end product. There are many factors to be analysed in order to properly develop the software development planning. Considering personal inexperience in web security, \texttt{flask}, and the \texttt{html} language, it is safe to assume that many issues with the program will be overlooked at the beginning. This means that the problems mentioned in this document will be a fraction of those that will actually be fixed in the later stages of the project. This will require allocating time to research on the aforementioned topics as well as choosing carefully the best development model. After careful consideration and taking into account that this project will need to cycle from the current code to an improved version a few times, the \textit{Waterfall with Subprojects} development model is going to be used.
 
 \section{Project Specifications}
 
@@ -111,8 +114,10 @@ When editing a squad there is also a set of conditions that have to be met. They
 \begin{enumerate}
  \item Can hire squad members as long as the total number of squad members does not exceed \textbf{10}, and as long as the squad's number of credits does not become negative.
  \item Captain and Ensign can gain EXPERIENCE.
- \item Acquired EXPERIENCE can be traded for upgrades for Captain and Ensign.
- \item 
+ \item Acquired EXPERIENCE can be traded for upgrades for Captain and Ensign (\textbf{10} EXPERIENCE points can be turned into \textbf{1} point for a Stat up to specified maximum values shown in the Appendix section).
+ \item Can remove squad members, but their hiring price is \textbf{not} returned to the number of credits.
+ \item The Captain can have \textbf{two} weapons.
+ \item Weapons cost credits. Changing or adding weapons \textbf{cannot} result in a negative number of credits.
 \end{enumerate}
 
 
@@ -454,24 +459,63 @@ cannot be studied by simply going through them. These methods are also very
 useful to know what sections of a code is taking up most of the run time and, 
 thus, best suited for optimization.
 
+\section{Annex}
 
+\subsection{Base stats}
 
-%\begin{table}[h]
-%\begin{center}
-%\begin{tabular}{||l|c|l||}
-%\hline
-%{\bf File names} & {\bf Satellite} & {\bf Resolution}\\
-%\hline
-%  worldr         &  Meteosat     &   5km\\
-%  worldg         &  Meteosat     &   5km\\
-%  worldb         &  Meteosat     &   5km\\
-%\hline
-%\end{tabular}
-%\end{center}
-%\caption{This is a simple table. More complicated tables can have
-%headings which pass over more than one column}
-%\label{simple_table}
-%\end{table}
+Besides the stats shown in table~\ref{simple_table}, both Captain and Ensign start with empty Skillset (that has to be filled when creating a squad), as well as an Associated Specialism, and no Items (one Weapon has to be added when creating a squad).
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{| m{1.7cm} |c|c|c|c|c|c|c| m{2.2cm} |}
+\hline
+{\bf Squad Member} & {\bf Move} & {\bf Fight} & {\bf Shoot} & {\bf Shield} & {\bf Morale} & {\bf Health} & {\bf Cost} & {\bf Experience}\\
+\hline
+  Captain & 5 & 2 & 2 & 12 & 4 & 12 & 0 & 0\\
+  \hline
+  Ensign & 7 & 0 & -1 & 10 & 2 & 8 & 250 & 0\\
+  \hline
+  & & & & & & & & {\bf Notes} \\
+  \hline
+  Augment Gorilla & 8 & 3 & 0 & 10 & 2 & 8 & 20 & Animal, cannot carry treasure or items\\
+  \hline
+  Lackey & 6 & 2 & 0 & 10 & -1 & 10 & 20 & Melee Weapon\\
+  \hline
+  Security & 6 & 2 & 1 & 12 & 2 & 12 & 80 & Blaster, Blade\\
+  \hline
+  Engineer & 4 & 0 & 3 & 12 & 2 & 10 & 60 & Blaster, Repair Kit\\
+  \hline
+  Medic & 5 & 0 & 0 & 12 & 3 & 10 & 50 & Blade, Medkit\\
+  \hline
+  Commando & 8 & 4 & 0 & 10 & 4 & 12 & 100 & Stealth Suit, Blade, Needle Gun\\
+  \hline
+  Combat Droid & 3 & 2 & 4 & 14 & 0 & 14 & 150 & Mechanoid, Dual Blaster, Claws\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Base stats for each squad member.}
+\label{simple_table}
+\end{table}
+
+\subsection{Maximum Stats}
+
+As the Captain and Ensign are able to increase their stats, it's important to state their maximum stats. 
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Squad Member} & {\bf Move} & {\bf Fight} & {\bf Shoot} & {\bf Shield} & {\bf Morale} & {\bf Health}\\
+\hline
+  Captain & 5 & 2 & 2 & 12 & 4 & 12\\
+  \hline
+  Ensign & 7 & 0 & -1 & 10 & 2 & 8\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Base stats for each squad member.}
+\label{simple_table}
+\end{table}
 
 
 

@@ -15,14 +15,14 @@ table, th, td { border: 1px solid black; text-align: left; }
 				{
 					engHire = true;
 					document.getElementById("ensignDiv").style.display = "block";
-					total = total - 200;
+					total = total - 200; // use the ensign's price.
 					updateCost();
 				}
 				else
 				{
 					engHire = false;
 					document.getElementById("ensignDiv").style.display = "none";
-					total = total + 200;
+					total = total + 200; // use the ensign's price.
 					updateCost();
 				}
 			}
@@ -53,7 +53,7 @@ table, th, td { border: 1px solid black; text-align: left; }
                                         myTable.rows[row].cells[4].innerHTML = '{{ people[troop]['Shield'] }}';
                                         myTable.rows[row].cells[5].innerHTML = '{{ people[troop]['Morale'] }}';
                                         myTable.rows[row].cells[6].innerHTML = '{{ people[troop]['Health'] }}';
-                                        myTable.rows[row].cells[7].innerHTML = {{ people[troop]['Cost'] }};
+                                        myTable.rows[row].cells[7].innerHTML = {{ people[troop]['Cost'] }}; // missing ' '
                                         myTable.rows[row].cells[8].innerHTML = '{{ people[troop]['Notes'] }}';
 
                                 }
@@ -65,7 +65,7 @@ table, th, td { border: 1px solid black; text-align: left; }
 				var sum = 0;
 				var myTable = document.getElementById('rosterTable');
 				
-				for(i = 1; i <= 8; i++)
+				for(i = 1; i <= 8; i++) // use myTable.length instead of 8.
 				{
 					sum = sum + parseInt(myTable.rows[i].cells[7].innerHTML);
 				}
@@ -227,7 +227,7 @@ table, th, td { border: 1px solid black; text-align: left; }
 
 <h1>Warband</h1>
 <h2>Warband Name:<input type="text" id="bandnametext" name="bandnametext"></h2>
-
+<!Missing associated player name>
                 <table border="0">
                         <tr>
 <td><h3>Currency remaining: </h3></td>
@@ -249,7 +249,7 @@ table, th, td { border: 1px solid black; text-align: left; }
 <tr>
  
                                <td>{{wizard['Captain']['Move']}}</td>
-				<td>{{wizard['Captain']['Fight']}}</td>
+				<td>{{wizard['Captain']['Fight']}}</td> <!formatting>
                                 <td>{{wizard['Captain']['Shoot']}}</td>
                                 <td>{{wizard['Captain']['Shield']}}</td>
                                 <td>{{wizard['Captain']['Morale']}}</td>
@@ -276,6 +276,7 @@ table, th, td { border: 1px solid black; text-align: left; }
 
 </table>
 Hire apprentice? <input type="checkbox" name="appHire" onClick="hireEng()">200gc<br>
+<!Be consistent with the names - always Ensign. Why '200' and what's 'gc'??>
 <div id="ensignDiv" style='display: none'>
 <table id="ensignTable">
 <tr>
@@ -331,10 +332,13 @@ Hire apprentice? <input type="checkbox" name="appHire" onClick="hireEng()">200gc
 				<td>Cost</td>
 				<td>Notes</td>
 			</tr>
-{% for i in range(1,11) %}
+{% for i in range(1,11) %} 
+<! It is impossible to fill 10 slots. One belongs to the Captain.>
+<! If Ensign is hired, only 8 can be used.>
 <tr>
 <td>
-<select id="troop{{i}}" onchange="updateTableRow({{ i }}, this)">
+<select id="troop{{i}}" onchange="updateTableRow({{ i }}, this)"> 
+<! ^ - Method should work for Cpt and Ensign.>
    <option value="Empty">Empty</option>
      {% for troop in people.keys() %}
         <option value="{{ troop }}">{{ troop }}</option>
