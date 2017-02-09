@@ -48,28 +48,30 @@
 
 \section{Introduction}
 
-This report will provide a series of guidelines on how to proceed with the creation of a web application. The web application's code has been initiated by an unknown party, that is written in \texttt{html}, \texttt{python} and uses the web framework \texttt{flask}. Said code must be enhanced such that it fulfills the base requirements for the project. The skeleton of the web application has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
+This report will provide a series of guidelines on how to proceed with the creation of a web application. The web application's code has been initiated by an unknown party, that is written in \texttt{html}, \texttt{JavaScript}, \texttt{python} and uses the web framework \texttt{flask}. Said code must be enhanced such that it fulfills the base requirements for the project. The skeleton of the web application has a few elements already built in. It is, however, very rough and needs much work to become a feasible end product. 
 
-The first part of the report will briefly outline what is the intended project, and the background needed to understand what it is attempting to achieve. While this is being discussed, some of the important factors to keep in mind are highlighted. After this is done, several comments regarding issues in the provided code are made. Afterwards, solutions for most of these are proposed, and eventually presented in a \textit{time/effort} estimation plan. Finally, once the project has been understood, and its purpose is clear, risk analysis and management strategy are posed.
+The first part of the report will briefly outline what is the intended project, and the background needed to understand what it is attempting to achieve. While this is being discussed, some of the important factors to keep in mind are highlighted. After this is done, several comments regarding issues in the provided code are made. Afterwards, solutions for most of these are proposed, and eventually presented in a \textit{time/effort} estimation plan. Finally, once the project has been understood, and its purpose is clear, risk analysis and management strategy are posed. For the latter, a Gantt chart is put together to act as a guide for the next steps: \textit{UI and Evaluation Plan} and \textit{Refactoring and Reflection}.
 
-The management strategy in this small project will help make a successful end product. There are many factors to be analysed in order to properly develop the software development planning. Considering personal inexperience in web security, \texttt{flask}, and the \texttt{html} language, it is safe to assume that many issues with the program will be overlooked at the beginning. This means that the problems mentioned in this document will be a fraction of those that will actually be fixed in the later stages of the project. This will require allocating time to research on the aforementioned topics as well as choosing carefully the best development model. After careful consideration and taking into account that this project will need to cycle from the current code to an improved version a few times, the \textit{Waterfall with Subprojects} development model is going to be used.
+The management strategy in this small project will help make a successful end product. There are many factors to be analysed in order to properly develop the software development planning. Considering personal inexperience in web security, \texttt{flask}, \texttt{html}, and \texttt{JavaScript}, it is safe to assume that many issues with the program will be overlooked at the beginning. This means that the problems mentioned in this document will be a fraction of those that will actually be fixed in the later stages of the project. This will require allocating time to research on the aforementioned topics as well as choosing carefully the best development model. After careful consideration and taking into account that this project will need to cycle from the current code to an improved version a few times, the \textit{Waterfall with Subprojects} development model is going to be used.
+
+Having mentioned how the lack of experience will impact the development model required, it is important to analyze how it will modify other elements of the project's progress. The best way to do this is most likely through the Gantt chart. In it, tasks that have to be completed and are related to areas of inexperience will need some time allocation for 'research' or 'practice', but this will decrease as more tasks of the same area are performed, i.e. account for knowledge growth. 
 
 \section{Project Specifications}
 
-The goal is to further develop a web based application that allows the user to generate a squad for a tabletop game - with certain constraints. The application must allow users to create and edit squads with an unchangeable name, no more than 10 members, and no fewer than 1. The user begins with a Captain, that can become better with time, and has a limited amount of money to hire other regular team members, that cannot improve with time, and a special member, the Ensign, who, like the Captain, can evolve in time.
+The goal is to further develop a web based application that allows the user to generate a squad (Warband) for a tabletop game - with certain constraints. The application must allow users to create and edit squads with an unchangeable name, no more than 10 members, and no fewer than 1. The user begins with a Captain, that can become better with time, and has a limited amount of money to hire other regular team members, that cannot improve with time, and a special member, the Ensign, who, like the Captain, can evolve in time.
 
-The idea of the web application is to check that all constraints are fulfilled for a user's squad, and that if one or more are violated, a warning message is displayed such that the user is able to modify their decision. The base stats for each team member are shown in the Annex.
+The idea of the web application is to check that all constraints are fulfilled for a user's Warband, and that if one or more are violated, a warning message is displayed such that the user is able to modify their decision. The base stats for each team member are shown in the Annex.
 
-\subsection{New Squad}
+\subsection{New Warband}
 
-A new squad begins with \textbf{one} Captain and \textbf{500} credits. For a new squad to be created, the following conditions must be met:
+A new Warband begins with \textbf{one} Captain and \textbf{500} credits. For a new Warband to be created, the following conditions must be met:
 
 \begin{enumerate}
- \item Squad Name.
+ \item Warband Name.
  \item Player Name.
  \item Positive number of credits.
  \item Captain: \begin{enumerate}
-                 \item \textbf{ONE} per squad.
+                 \item \textbf{ONE} per Warband.
                  \item Starts with \textbf{one} EXPERIENCE.
                  \item Must be assigned \textbf{one} SPECIALISM (Engineering, Psychology, Marksman, Tactics, Melee, Defence).
                  \item \textbf{One} Associated Skill must be assigned to the specified SPECIALISM: \begin{enumerate}
@@ -90,7 +92,7 @@ A new squad begins with \textbf{one} Captain and \textbf{500} credits. For a new
                 \end{enumerate}
  \item Ensign: \begin{enumerate}
                 \item Price of hiring: \textbf{250} credits.
-                \item Maximum \textbf{ONE} (squads can be created without an Ensign).
+                \item Maximum \textbf{ONE} (Warbands can be created without an Ensign).
                 \item Must be assigned \textbf{one} SPECIALISM.
                 \item Must be assigned \textbf{one} Associated Skill.
                 \item Must be given \textbf{one} WEAPONS/EQUIPMENT.
@@ -107,90 +109,74 @@ A new squad begins with \textbf{one} Captain and \textbf{500} credits. For a new
                              \end{enumerate}
 \end{enumerate}
 
-\subsection{Edit Squad}
+\subsection{Edit Warband}
 
-When editing a squad there is also a set of conditions that have to be met. They are outlined here.
+When editing a Warband there is also a set of conditions that have to be met. They are outlined here.
 
 \begin{enumerate}
- \item Can hire squad members as long as the total number of squad members does not exceed \textbf{10}, and as long as the squad's number of credits does not become negative.
+ \item Can hire squad members as long as the total number of squad members does not exceed \textbf{10}, and as long as the Warband's number of credits does not become negative.
  \item Captain and Ensign can gain EXPERIENCE.
  \item Acquired EXPERIENCE can be traded for upgrades for Captain and Ensign (\textbf{10} EXPERIENCE points can be turned into \textbf{1} point for a Stat up to specified maximum values shown in the Appendix section).
  \item Can remove squad members, but their hiring price is \textbf{not} returned to the number of credits.
- \item The Captain can have \textbf{two} weapons.
+ \item The Captain can have up to \textbf{two} weapons and \textbf{four} items.
+ \item The Ensign can have up to \textbf{one} weapon and \textbf{3} items.
  \item Weapons cost credits. Changing or adding weapons \textbf{cannot} result in a negative number of credits.
 \end{enumerate}
 
 
 \section{Identified Problems}
 
-Now that the constraints of the teams have been covered, it is possible to go through the code to check missing or wrong information.
+Now that the constraints of the teams have been covered, it is possible to go through the code to check missing or wrong information. But first, going through the current web application to see errors in its functioning is important. The following is a list of problems that are observed by working though the web application alone. 
+
+\subsection{New Warband}
+
+\begin{enumerate}
+ \item The most obvious deficiency is the fact that Warbands are not linked to a specific player. This means that anyone can edit any Warband. The game must support more than one player, where only the team's owner can edit it, but all other players can see it.
+ \item There is no way to go from the ``New Warband'' or ``Edit Warband'' pages to the ``Home'' page without using browser back button or address bar.
+ \item There has been no attempt at testing the current product. For example, when attempting to generate an illegal ``New Warband'' (Captain without weapon / skill / specialism), an error message is given, but no explanation or way to return and fix the mistakes are provided.\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/warband_error}
+ Generic error message.
+ \end{minipage}
+ 
+ \item The price of weapons is not discounted from the number of credits from the screen when creating a ``New Warband''.
+ \item Neither Captain nor Ensign have ''Notes`` section, and merged ''Weapons and Equipment``, whereas the two should be different.
+ \item The Ensign is called ``Apprentice'' for some reason - this is confusing.
+ \item The cost of the ``Apprentice'' is 200 credits instead of 250 as it should. This and the previous item are actually related, and comprise a larger problem - the information from each team member is actually stored in the \texttt{python} code and separately in the \texttt{html/JavaScript} code. Due to this, the price on screen is 200 credits, but it actually subtracts 250 credits (as it should). 
+ \item A 10 row table allows the player to fill out the form with up to 12 members (returns the generic error message when done so).\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/twelve_members}
+ Chance to include 12 members.
+ \end{minipage}
+ 
+ \item There is no method for handling attempts at creating a new Warband with a name that already exists. This has to be carefully thought out when including multiplayer - no two teams can have the same name, even if they are built by different players - involving the client is important for this decision.
+
+\end{enumerate}
+
+\subsection{Edit Warband}
+
+\begin{enumerate}
+ \item The most serious problem in the ``Edit Warband'' menu is the handling of credits. When editing the Warband the number of credits is modified erroneously:\\
+ A new Warband with only a Captain with a cannon (15 credits) is generated. Then, in the ``Edit Warband'' page, clicking ``Create Warband'' decreases the number of credits by 15 (shown in the figures below). Like this, there are other errors with the credit handling in the ``Edit Warband'' page.\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/example0}
+ \includegraphics[width=1\textwidth]{img/example1}
+ \end{minipage}
+ 
+ \item It is not possible to hire an Ensign after creating the Warband.
+ \item Squad members are treated like slaves, i.e. it is possible to sell them for the original amount of credits that they were ``hired'' with. This needs to change according to the game rules.
+ \item The rules for increasing the Captain's and Ensign's skills is completely off - it is unlimited and completely uncorrelated to the experience points. 
+ \item The Captain and Ensign maximum values of skills (Annex) are not taken into consideration.
+ \item Captain is not able to have \textbf{two} weapons.
+ \item Neither Captain nor Ensign can obtain equipment.
+ \item When attempting to make an illegal Warband nothing happens - not even the generic error message returned previously.
+ \item Impossible to add number of credits.
+\end{enumerate}
 
 
-
-
-This report explains a series of performance tests that were made for a 
-Predator-Prey model written in Python 3. Said model attempts to describe the 
-changes in population densities of hares and pumas over a given landscape. The 
-model receives the 
-following: a landscape where both animals live together that can contain land 
-and water, the population density of each animal, a predation rate (pumas that 
-eat hares), birth rates for each animal, mortality rate for pumas (hares do not 
-die of natural causes), and diffusion rates for each animal. 
-
-The Predator-Prey model that was analyzed in this report has written by 
-\textit{Callum Black, Andr\'es Cathey, and Eskil Joergenssen} for the HPC 
-course \textbf{Programming Skills}. This program exploits the resources of the 
-python package \texttt{numpy}. Doing so it is able to analyze a $100\%$ 
-land-filled 
-$2000$x$2000$ landscape in less than $7$ minutes. 
-
-The input file that is given to the program has $0$s and $1$s that represent 
-water and land respectively as shown in fig.~\ref{fig:1} (or~\ref{fig:2}) for a 
-$30$ by $30$ 
-file. When the input file is only water then neither hares nor pumas can live in 
-it, and barely no computations should be done. This is the motivation for the 
-first performance test that is done for this program, i.e. how is the 
-program's run time affected by the land-to-water percentage for a given input 
-landscape size, expecting the run time to increase linearly as more land is 
-added to a fixed size input landscape.
-
-\begin{figure}[ht]
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/input_file.png}
-\caption{An input file with a block of land ($30\%$ land).}
-\label{fig:1}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/input_rand.png}
-\caption{An input file with randomly filled land ($30\%$ land).}
-\label{fig:2}
-\end{minipage}
-\end{figure}
-
-The ``second'' performance test is a slight variation of the first test. It is 
-done by taking two different ways of filling the landscape with land. The first 
-way to do this is by creating a block of land and a block of water. A different 
-way to fill the landscape is to do it in a random manner (without changing the 
-percentage of land in the input file) as shown in fig.~\ref{fig:2}. This 
-performance test is related to the diffusion rates of both animals (their 
-movement within the landscape) - land 
-squares in randomized files should, on average, have less land neighbors than 
-land squares in 'block' filled files. 
-
-The third test that was done relates to the size of the input file. By changing 
-the input landscape area and calculating the run time of the program we expect 
-to see a linear growth - failure to observe this would mean that a significant 
-optimization in the program. These were done first with a static land 
-percentage, and afterwards with varying land-to-water percentages.
-
-Finally, the program was profiled using the python native \texttt{cProfile}. 
-This was done for input files of $100$x$100$ and $1000$x$1000$ and, in both 
-cases, for $30\%$ and $60\%$ land-to-water ratios. This method was probably the 
-most helpful in obtaining information on each function used. It helped 
-determine where any optimization attempts should be directed at.
 
 \section{Project Planning}
 
@@ -237,118 +223,15 @@ required. This is the motivation behind the first performance test.
 
 For an input file of fixed size the percentage of land to water is varied from 
 $0\%$ to $100\%$. Using a bash script, the time it takes to run the program 
-with different land-water proportions in a $100$ by $100$ landscape is plotted 
-and fitted to a function as shown in fig.~\ref{fig:3}.
+with different l
 
-\begin{figure}[ht]
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/percentage.eps}
-\caption{A plot of the run time depending on the percentage of land in the 
-'block' input file.}
-\label{fig:3}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/percentage_rand.eps}
-\caption{A plot of the run time depending on the percentage of land in the 
-random input file.}
-\label{fig:4}
-\end{minipage}
-\end{figure}
 
 The output confirms the intuition that the program's run time should increase 
 as the percentage of land in the input landscape file is increased. 
 Furthermore, it shows that the aforementioned growth has a direct 
-proportionality to the increase in land-to-water ratio, following 
-eqn.~\ref{eq:1} 
 
-\begin{equation}
-RunTime(land\%)\,=\,0.83451\,+\,0.00463\,land\%
-\label{eq:1}
-\end{equation}
 
-\subsection{Randomly Generated Landscapes}
 
-The previous performance test was done with ``block'' input landscape files, 
-i.e. similar to 
-fig.~\ref{fig:1}. The question of whether this would change if the input 
-landscape files used were of the likes of fig.~\ref{fig:2} is also briefly 
-studied. By doing the exact same analysis as above with randomized land filled 
-files gives fig.~\ref{fig:4}, with a fit defined by eqn.~\ref{eq:2}. 
-
-\begin{equation}
-RunTime'(land\%)\,=\,0.83434\,+\,0.00461\,land\%
-\label{eq:2}
-\end{equation}
-
-Since the slope of eqns.~\ref{eq:1} and~\ref{eq:2} define how the computation 
-time escalates as the land-to-water percentage increases, a simple comparison 
-between the slopes of each equation provides an idea as to whether there is any 
-significant difference between both methods. The slope 
-of eqn.~\ref{eq:2} differs by less than $1\%$ from the one of eqn.~\ref{eq:1}.
-From this it is possible to conclude that it is irrelevant whether the input 
-landscape file was randomly generated or generated in a particular order, and 
-the factor that needs to be considered is the ratio of land-to-water.
-
-\section{Input Landscape File Size}
-
-The most important aspect of the run time of the program is the size of the 
-input landscape file. For the previous performance tests the size of the input 
-landscape file was $100$x$100$, which corresponds to a landscape area of 
-$10000$. It is of interest to calculate how does the run time behave when we 
-linearly increase the landscape area. To do so a bash script is implemented 
-that calculates the run time of the program for different landscape areas and 
-plots these to check the nature of the growth.
-
-Figure~\ref{fig:5} shows a linear relation between the run time and the input 
-landscape's area. Since the input landscapes used are squares, then a quadratic 
-relationship between the run time and the input landscape's 
-squares per side is expected, and, indeed, observed. This is shown in 
-fig.~\ref{fig:6}. Both figures show the run 
-time for landscape inputs of land-to-water percentage of $30\%$.
-
-\begin{figure}[ht]
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/map_size_area_30.eps}
-\caption{Run time vs. area with $30\%$ land-to-water.}
-\label{fig:5}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/map_size_side_30.eps}
-\caption{Run time vs. area with $30\%$ land-to-water.}
-\label{fig:6}
-\end{minipage}
-\end{figure}
-
-To check whether these relations hold for different land-to-water percentages a 
-sweep for this is also generated. This is shown in figs.~\ref{fig:7} 
-and~\ref{fig:8}. Since the same relation appears for several other 
-land-to-water percentages, it is possible to conclude that despite increasing 
-the land-to-water percentage in the input file does increase the run time, it 
-does so in a linear, and not exponential, fashion. In other words, the run time 
-is directly proportional to the landscape area regardless of the land-to-water 
-ratio.
-
-\begin{figure}[ht]
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/map_size_area.eps}
-\caption{Run time vs. area with different land-to-water percentages.}
-\label{fig:7}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.475\linewidth}
-\centering
-\includegraphics[width=\textwidth]{img/map_size_side.eps}
-\caption{Run time vs. area with different land-to-water percentages.}
-\label{fig:8}
-\end{minipage}
-\end{figure}
 
 \section{Code Profiling}
 
@@ -357,65 +240,6 @@ run time for the program, the python native profiler ``\texttt{cProfile}'' was
 used. First, two input files of the same size ($100$x$100$) one with $30\%$ and 
 the other $60\%$ land-to-water ratios were profiled. The output shows how much 
 time each function took and how many times they were called. These results are 
-summarized in the pie-charts of figs.~\ref{fig:9} and~\ref{fig:10}.
-
-\begin{figure}[ht]
-\begin{minipage}[b]{0.45\linewidth}
-\flushleft
-\includegraphics[width=1.1\textwidth]{img/cProfile_30_100.png}
-\caption{Pie chart of run time components for $30\%$ 
-land-to-water ratio in $100$x$100$ landscape.}
-\label{fig:9}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.45\linewidth}
-\flushleft
-\includegraphics[width=1.1\textwidth]{img/cProfile_60_100.png}
-\caption{Pie chart of run time components for $60\%$ 
-land-to-water ratio in $100$x$100$ landscape.}
-\label{fig:10}
-\end{minipage}
-\end{figure}
-
-These images show that functions inside the file \texttt{ppm.py} are the 
-most time consuming for both the $30\%$ and $60\%$ cases. The 
-``\texttt{built-in}'' and ``\texttt{method}'' are instances where 
-\texttt{python} 
-calls for certain functions, modules, or functions within them. Given that 
-the contributions from python calling modules and such will become less 
-relevant when larger files are used, we use the ``\texttt{cProfile}'' method 
-once more. Obviously, this time the input landscape file will have a larger 
-size - $1000$x$1000$. This will help  find out what components of the actual 
-program are taking more time.
-
-In this occasion, the landscape input files of $1000$x$1000$ are also 
-studied with land-to-water percentages of $30$ and $60$ are used.The 
-corresponding pie charts are generated in the same way as before (again with 
-a bash script). These are shown figs.~\ref{fig:11} and~\ref{fig:12}.
-
-\begin{figure}[ht]
-\begin{minipage}[b]{0.45\linewidth}
-\flushleft
-\includegraphics[width=1.1\textwidth]{img/cProfile_30_1000.png}
-\caption{Pie chart of run time components for $30\%$ 
-land-to-water ratio in $1000$x$1000$ landscape.}
-\label{fig:11}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.45\linewidth}
-\flushleft
-\includegraphics[width=1.1\textwidth]{img/cProfile_60_1000.png}
-\caption{Pie chart of run time components for $60\%$ 
-land-to-water ratio in $1000$x$1000$ landscape.}
-\label{fig:12}
-\end{minipage}
-\end{figure}
-
-As expected, the pie charts for the larger input file (~\ref{fig:11} and 
-~\ref{fig:12}) have a significantly smaller contribution from the 
-``\texttt{built-in}'' and ``\texttt{method}'' instances. Additionally, they 
-show that the functions of \texttt{ppm.py} are the most time consuming 
-regardless of the land-to-water percentage and the input file size.
 
 These figures provide a more complete picture of what can be done to optimize 
 the program under study. The first thing that is evident is that 
@@ -465,11 +289,11 @@ thus, best suited for optimization.
 
 \subsection{Base stats}
 
-Besides the stats shown in table~\ref{simple_table}, both Captain and Ensign start with empty Skillset (that has to be filled when creating a squad), as well as an Associated Specialism, and no Items (one Weapon has to be added when creating a squad). All other stats are summarized in the following table.
+Besides the stats shown in table~\ref{Atable:1}, both Captain and Ensign start with empty Skillset (that has to be filled when creating a squad), as well as an Associated Specialism, and no Items (one Weapon has to be added when creating a squad). All other stats are summarized in the following table.
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{| m{1.7cm} |c|c|c|c|c|c|c| m{2.2cm} |}
+\begin{tabular}{|m{1.8cm}|c|c|c|c|c|c|c| m{2.1cm} |}
 \hline
 {\bf Squad Member} & {\bf Move} & {\bf Fight} & {\bf Shoot} & {\bf Shield} & {\bf Morale} & {\bf Health} & {\bf Cost} & {\bf Experience}\\
 \hline
@@ -496,8 +320,10 @@ Besides the stats shown in table~\ref{simple_table}, both Captain and Ensign sta
 \end{tabular}
 \end{center}
 \caption{Base stats for each squad member.}
-\label{simple_table}
+\label{Atable:1}
 \end{table}
+
+\newpage
 
 \subsection{Maximum Stats}
 
