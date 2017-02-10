@@ -5,9 +5,10 @@
 \contentsline {section}{\numberline {3}Identified Problems}{4}
 \contentsline {subsection}{\numberline {3.1}New Warband}{4}
 \contentsline {subsection}{\numberline {3.2}Edit Warband}{5}
-\contentsline {section}{\numberline {4}Project Planning}{7}
-\contentsline {section}{\numberline {5}Code Profiling}{7}
-\contentsline {section}{\numberline {6}Conclusions}{8}
-\contentsline {section}{\numberline {7}Annex}{9}
-\contentsline {subsection}{\numberline {7.1}Base stats}{9}
-\contentsline {subsection}{\numberline {7.2}Maximum Stats}{10}
+\contentsline {subsection}{\numberline {3.3}\texttt {.py} and \texttt {.html} Files}{7}
+\contentsline {section}{\numberline {4}Solution Proposals}{8}
+\contentsline {section}{\numberline {5}Time/Effort Estimation Plan}{10}
+\contentsline {section}{\numberline {6}Risk Analysis and Management Strategy}{10}
+\contentsline {section}{\numberline {7}Annex}{12}
+\contentsline {subsection}{\numberline {7.1}Base stats}{12}
+\contentsline {subsection}{\numberline {7.2}Maximum Stats}{13}

@@ -57,6 +57,7 @@ The management strategy in this small project will help make a successful end pr
 Having mentioned how the lack of experience will impact the development model required, it is important to analyze how it will modify other elements of the project's progress. The best way to do this is most likely through the Gantt chart. In it, tasks that have to be completed and are related to areas of inexperience will need some time allocation for 'research' or 'practice', but this will decrease as more tasks of the same area are performed, i.e. account for knowledge growth. 
 
 \section{Project Specifications}
+\label{sec:concept}
 
 The goal is to further develop a web based application that allows the user to generate a squad (Warband) for a tabletop game - with certain constraints. The application must allow users to create and edit squads with an unchangeable name, no more than 10 members, and no fewer than 1. The user begins with a Captain, that can become better with time, and has a limited amount of money to hire other regular team members, that cannot improve with time, and a special member, the Ensign, who, like the Captain, can evolve in time.
 
@@ -152,6 +153,9 @@ Now that the constraints of the teams have been covered, it is possible to go th
  \end{minipage}
  
  \item There is no method for handling attempts at creating a new Warband with a name that already exists. This has to be carefully thought out when including multiplayer - no two teams can have the same name, even if they are built by different players - involving the client is important for this decision.
+ \item Consecutively creating new Warbands will accumulate the price of weapons and squad members (big problem).
+ \item Trying to create two new Warbands without leaving the ``New Warband'' menu does not allow to select weapon for Captain.
+ \item After creating a Warband with the Captain's weapon being a cannon, the next new Warband's Captain will also have a cannon, regardless of the choice of weapon.
 
 \end{enumerate}
 
@@ -162,126 +166,140 @@ Now that the constraints of the teams have been covered, it is possible to go th
  A new Warband with only a Captain with a cannon (15 credits) is generated. Then, in the ``Edit Warband'' page, clicking ``Create Warband'' decreases the number of credits by 15 (shown in the figures below). Like this, there are other errors with the credit handling in the ``Edit Warband'' page.\\
  \begin{minipage}[t]{\linewidth}
  \centering
- \includegraphics[width=1\textwidth]{img/example0}
- \includegraphics[width=1\textwidth]{img/example1}
+ \includegraphics[width=1\textwidth]{img/example00}
+ \includegraphics[width=1\textwidth]{img/example01}
  \end{minipage}
  
  \item It is not possible to hire an Ensign after creating the Warband.
  \item Squad members are treated like slaves, i.e. it is possible to sell them for the original amount of credits that they were ``hired'' with. This needs to change according to the game rules.
- \item The rules for increasing the Captain's and Ensign's skills is completely off - it is unlimited and completely uncorrelated to the experience points. 
+ \item The rules for increasing the Captain's and Ensign's skills is completely off - it is unlimited and completely uncorrelated to the experience points.
+ \item There is also no limit regarding the amount of experience points that can be added with a single edit.
  \item The Captain and Ensign maximum values of skills (Annex) are not taken into consideration.
  \item Captain is not able to have \textbf{two} weapons.
- \item Neither Captain nor Ensign can obtain equipment.
+ \item Neither Captain nor Ensign can obtain extra equipment.
  \item When attempting to make an illegal Warband nothing happens - not even the generic error message returned previously.
  \item Impossible to add number of credits.
 \end{enumerate}
 
+The past two lists were obtained exclusively from using the current web application, and valuable information was extracted from this method. The focus of the report will return to this in section~\ref{sec:sols} for proposed solutions for the mentioned problems. These are, obviously, intimately linked to the problems found in the current source code. Thus it is also important to review the actual files that have generated the web application. An overview of the \texttt{python} files that are used for going back and forth between \texttt{html} files, as well as the actual \texttt{html} files is done. 
+
+\subsection{\texttt{.py} and \texttt{.html} Files}
+
+The following lists some problems found with the given \texttt{python} script that is used to navigate inside the web application dealing with checking (or attempting to check) the validity of new or edited Warbands as well as the \texttt{html} files.  
+
+\begin{enumerate}
+ \item An important thing that must be considered is that this application does not install (or even check) for the dependencies it has (\texttt{Flask} is not among \texttt{python}'s built-in modules).
+ \item The application assumes that \texttt{python} is installed, while this might not be the case. 
+ \item The use of \texttt{flask} framework requires an installation in many machines.
+ \item \texttt{framework.py} uses cryptic names like \texttt{wizard} to refer to the Captain, or \texttt{apprentice} to refer to the Ensign.
+ \item The \texttt{framework.py} file is not written for humans: Horrible style and formatting and almost no comments are used in the code.\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/formatting}
+ Careless formatting.
+ \end{minipage}
+ 
+ \item There is no \texttt{try/except} methods for actions that could incur in errors. For example, opening files in \texttt{framework.py}.
+ \item The validate functions (check that there's a positive number of credits, number of squad members, etc.) need to be written. 
+ %\item Using \texttt{createdband} variable name everywhere in the \texttt{new\_band} function relates to problem 3.1.10.%\\
+ %\begin{minipage}[t]{\linewidth}
+ %\centering
+ %\includegraphics[width=1\textwidth]{img/new_warband}
+ %Problem when creating new warband.
+ %\end{minipage}
+ 
+ \item \texttt{framework.py}'s \texttt{sumband} function works incorrectly when an Ensign is included - it adds the Captain's weapons twice instead of summing the Captain's and the Ensign's weapons. (Related to problem 3.1.10).\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/sumband}
+ \texttt{sumband} error.
+ \end{minipage}
+ 
+ \item Use augmented assignment in \texttt{sumband} function.
+ \item \texttt{bandlist.html}, \texttt{blankband.html}, and \texttt{editband.html} show no route to go to \texttt{index.html} - this should be supported.
+ \item \texttt{blankband.html} and \texttt{editband.html} have strange formatting decisions.
+ \item \texttt{blankband.html} and \texttt{editband.html} mistakes the name of the Ensign with ``Apprentice''. This is related to problem 3.1.6.
+ \item \texttt{blankband.html}'s \texttt{hireEng()} function uses a hardcoded (mistaken) value for the Ensign's hiring price. This is related to problem 3.1.7.\\
+ \begin{minipage}[t]{\linewidth}
+ \centering
+ \includegraphics[width=1\textwidth]{img/hireEng}
+ Hardcoded values in \texttt{hireEng()} function.
+ \end{minipage}
+ 
+ \item \texttt{editband.html} and \texttt{blankband} have several formatting errors - again, not designed for humans.
+\end{enumerate}
+
+These are the problems found in the web application source files. Nevertheless, they are probably just scratching the surface, and when the process of fixing them starts, considerably more problems will be discovered. As it was mentioned in the introduction section, it is important to take into account the level of experience at hand. Having no knowledge of \texttt{Flask}, \texttt{JavaScript} or \texttt{html} a learning curve behaviour will need to be included in time and effort estimations. 
+
+This means that two factors will increase the uncertainty of the project planning. Both are directly related to a lack of experience in the programming languages that are used in the current code. The first factor is that the errors identified in the current report constitute only a fraction of the entirety of errors that actually exist in it. This will need to be included in the project planning (Gantt chart) in the form of an increase in the time needed to fix all problems in the code. This will be done through a combination of estimation and accountability of research/study time: tutorials of \texttt{Flask} and \texttt{html} (the main source of uncertainty at the moment) will make up around 8 to 10 work hours in the Gantt chart, and by considering that the number of problems found will be roughly double the number of problems that this report has found (only considering section 3.3). 
 
 
-\section{Project Planning}
+\section{Solution Proposals}
+\label{sec:sols}
+
+The problems identified in the previous section are, in general, not extensively complicated. Some of them require previous knowledge, and thus will require more time than others. A subset of these problems -- those related to the multiplayer implementation -- requires the most amount of effort. Similarly, becoming acquainted with \texttt{html} will require some effort at the beginning. Throughout the progress of the project, time is allocated for error handling and testing.  
+
+The problems are classified as follows:
+
+\begin{enumerate}
+ \item Formatting problems. For close to 1200 lines of code (generally not the best metric for estimations, but this is solely for formatting), around 2 to 3 hours will be required with the help of an adequate IDE. This also includes fixing cryptic names, style, formatting and comments. This is imperative before starting any coding, and also important before delivering the end product (it has to be properly commented).
+ \item Dependencies problems - implement methods that check the presence of \texttt{Flask} and other dependencies. In the end it should install the required modules such that the application can run smoothly. Around 1 to 2 hours to complete. This can be done among the final tasks - when all the necessary modules will be referenced to.
+ \item Validate functions. This will be among the first few methods to go deep into the code, so a thorough understanding of it is necessary. Some effort has to be directed at familiarising with the \texttt{flask} framework. Around 3 to 5 hours.
+ \item Update functions. This will deal with experience points conversion to skills in a legal manner, Captain and Ensign's extra weapons or equipment, addition of credits, removing squad members, and many more (including any problems that are found in the future). Around 5 to 6 hours. 
+ \item \texttt{html} tutorial. Going through a basic \texttt{html} tutorial and writing methods to go from ``Edit'' or ``New'' Warband menus to ``Home''. Around 2 to 4 hours.
+ \item \texttt{html} functions. Go through problems 3.3.11-13, and very likely find several more errors. Around 5 hours.
+ \item Internal error message handling. This relates implementing \texttt{try/except} and \texttt{assert} methods to handle errors and help in unit testing. This is something that needs to be done throughout the coding process - around 2 to 4 hours.
+ \item External error message handling. This relates to problem 3.1.3, and means identifying illegal squads and writing \texttt{html} error messages (with ways to return to ``Back'' or ``Home''. Without considering the time for writing the validate functions, around 1 to 2 hours to complete.
+ \item Multiplayer 1. Web application security tutorial and implementation of login with player name and password (talk with client first). Only the Warband's owner can edit it, but everyone else can see it. Around 4 to 7 hours.
+ \item Multiplayer 2. Implement the web application for multiplayer, adding player's name to the Warband's information. Around 4 to 7 hours hours.
+ \item Testing. Repeat previous tasks to keep consistency with previous advancements. Around 1 to 2 hours.
+\end{enumerate}
+
+\section{Time/Effort Estimation Plan}
+
+This section features a Gantt chart that uses the problems found on the code as well as the proposed solutions as a guideline. Said chart summarises the proposed solutions with the estimation of the effort and time that each of them will require. Several instances of error handling and testing are allocated in the Gantt chart. This is very important to produce a well rounded end product and intimately related to the fact that the chosen development model is the waterfall with subprojects (this will be further discused in the following section).
 
 \newganttchartelement{voidbar}{
-    voidbar/.style={
-        draw=black,
-        top color=black!25,
-        bottom color=black!23
-    }}
-    \begin{ganttchart}[x unit=0.42cm, 
-        y unit title=0.7cm,
-        y unit chart=0.5cm, vgrid, title label font=\footnotesize,
-        canvas/.style={draw=black, dotted}]{1}{28}
-        \gantttitle{Hours}{28}\\
-        \gantttitlelist{0,5,10,15,20,25,30,35,40,45,50,55,60,65}{2} \\
+ voidbar/.style={draw=black, top color=black!25,bottom color=black!23}
+}
+\begin{ganttchart}[x unit=0.42cm, y unit title=0.7cm, y unit chart=0.5cm, vgrid, title label font=\footnotesize,canvas/.style={draw=black, dotted}]{1}{26}
+        \gantttitle{Hours}{26}\\
+        \gantttitlelist{0,5,10,15,20,25,30,35,40,45,50,55,60}{2} \\
 
-        \ganttbar{A}{1}{2}     \\ 
-        \ganttbar{B}{3}{6}    \\   
-        \ganttbar{C}{7}{8}              \\ 
-        \ganttbar{D}{9}{12} \\
-        \ganttbar{E}{13}{16} \\
-        \ganttbar{F}{17}{20} \\
-        \ganttbar{G}{7}{8} \\
-        \ganttbar{H}{9}{12} \\
-        \ganttbar{I}{13}{16} \\
-        \ganttbar{J}{16}{21} \\
-        \ganttbar{K}{7}{7} \\
-        \ganttbar{L}{8}{11} \\
-        \ganttbar{M}{12}{14} \\
-        \ganttbar{N}{15}{16} \\
-        \ganttbar{O}{17}{20} \\
-        \ganttbar{P}{21}{24} \\
-        \ganttbar{Q}{25}{28} \\
-        \ganttbar{R}{28}{28} \\
-    \end{ganttchart}
+        \ganttbar{Formatting}{1}{1}     \\ 
+        \ganttbar{Validate}{2}{3}    \\
+        \ganttbar{Testing}{4}{4} \\
+        \ganttbar{\texttt{html} tutorial}{5}{6}              \\ 
+        \ganttbar{\texttt{html} functions}{7}{8} \\
+        \ganttbar{Internal EH}{9}{9} \\
+        \ganttbar{Update functions}{10}{12} \\
+        \ganttbar{External EH}{13}{13}\\
+        \ganttbar{Testing}{14}{14} \\
+        \ganttbar{Multiplayer 1}{15}{17} \\
+        \ganttbar{Multiplayer 2}{18}{19} \\
+        \ganttbar{Internal EH}{20}{20} \\
+        \ganttbar{Testing}{21}{22} \\
+        \ganttbar{External EH}{23}{23} \\
+        \ganttbar{Dependencies}{24}{24} \\
+        \ganttbar{Testing}{25}{26}
+\end{ganttchart}
+    
+\section{Risk Analysis and Management Strategy}
 
-One of the important restrictions of the model is that neither hares nor 
-pumas can live in sections that represent water. Therefore it is 
-straightforward to expect 
-that if a landscape is entirely covered in water it should run faster than one 
-completely covered 
-in land, since no computations related to the population densities should be 
-required. This is the motivation behind the first performance test.
+As it was mentioned before, the strategy that will be used for the development of this project will follow the waterfall with subprojects model. For this model, the software concept and the requirements analysis have been already covered and explained in section~\ref{sec:concept}. 
 
-For an input file of fixed size the percentage of land to water is varied from 
-$0\%$ to $100\%$. Using a bash script, the time it takes to run the program 
-with different l
+The architectural design of the web application has already been built and exists in the provided code, but has to be extended to multiplayer support. Before doing so, one full ``loop'' from architectural design to testing and back is performed. Afterwards, the multiplayer support is created and a full loop is done once more. A few instances of error handling are also used in order to catch errors through the code. 
 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.8\textwidth]{img/waterfall_subp}
+ \caption{Waterfall with subprojects}
+\end{figure}
 
-The output confirms the intuition that the program's run time should increase 
-as the percentage of land in the input landscape file is increased. 
-Furthermore, it shows that the aforementioned growth has a direct 
+The processes that have been mentioned help with risk management. Throughout the improvement of the code it is necessary to check if the Warbands that are being generated are legal before and after dealing with the multiplayer platform. The Gantt chart attempts to account for this through systematically testing as well as Internal and external error handling. Another possible risk that is mitigated by the project planning is the possible dependencies that the application may need. 
 
+The largest risk is, as has already been mentioned, the lack of experience in many aspects of the project's current build. This has been referenced several times and it is something that is being taken into consideration through the development of the project planning. This has been accounted into the necessary time for ``preparation'' for some of the tasks. 
 
-
-
-\section{Code Profiling}
-
-In order to actually know which functions make up for most of the time in the 
-run time for the program, the python native profiler ``\texttt{cProfile}'' was 
-used. First, two input files of the same size ($100$x$100$) one with $30\%$ and 
-the other $60\%$ land-to-water ratios were profiled. The output shows how much 
-time each function took and how many times they were called. These results are 
-
-These figures provide a more complete picture of what can be done to optimize 
-the program under study. The first thing that is evident is that 
-\texttt{ppm.py} is using most of the run time in all four cases. This file 
-holds the functions that are used to generate the \texttt{.ppm} files. Hence 
-this is where it would be most beneficial to attempt some type of 
-optimization. Additionally, the second set of pie charts makes it clear that 
-the files \texttt{population.py} and \texttt{landscape.py} are also good 
-candidates for possible optimization.
-
-
-\section{Conclusions}
-
-After performing a series of performance and profiling tests on the program 
-written by \textit{Callum Black, Andr\'es Cathey, and Eskil Joergenssen} for the 
-HPC course \textbf{Programming Skills} a few good features can be made 
-about the 
-run times of said program. Additionally, it was possible to know what functions 
-should be optimized in order to do a significant impact on the program's run 
-time.
-
-The first feature of the code that was studied was how the program's run time 
-increases as the land-to-water percentage is increased. A linear relation 
-between these was found, confirming that the computation time increases when 
-the percentage of land in a fixed size file is increased. 
-
-Afterwards, it was shown that the program's run time also grows linearly when 
-the input landscape file's number of land/water squares is increased linearly. 
-This confirmed the intuition that the most important factor for the program's 
-run time is the landscape's area. 
-
-Finally, the profiling part of the tests provided information as to what 
-functions could be optimized in order to decrease the run-time of the program. 
-Said optimizations should be done for writing the \texttt{.ppm} file, since 
-this always represents most of the run time regardless of input file size (the 
-percentage of the run time that it represents should also grow linearly).
-
-It can be concluded that performance testing and profiling are important to 
-know what are the weaknesses and the strengths of large, or complex, codes that 
-cannot be studied by simply going through them. These methods are also very 
-useful to know what sections of a code is taking up most of the run time and, 
-thus, best suited for optimization.
 
 \newpage
 

@@ -441,9 +441,9 @@ Hire apprentice? <input type="checkbox" name="appHire" onClick="hireEng()" {% if
                                                 {% for weap in weaps %}
                                                 {% if weap in band['Ensign']['Items'] %}
                                                                                                 <option value="{{ weap }}" selected>{{ weap }}</option>
- 
+
                                                 {% else %}
-        
+
                                                 <option value="{{ weap }}">{{ weap }}</option>
                                                 {%endif%}
                                                 {% endfor %}
