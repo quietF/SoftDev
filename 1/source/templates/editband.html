@@ -326,6 +326,7 @@ table, th, td { border: 1px solid black; text-align: left; }
 </head>
 <body>
 
+<input id="return" type="button" value="Home" onclick="window.location.href='/'" />
 <h1>Warband</h1>
 <h2>Warband Name:<input type="text" id="bandnametext" name="bandnametext" value="{{ band['Name'] }}"></h2>
 
@@ -337,7 +338,7 @@ table, th, td { border: 1px solid black; text-align: left; }
                 </table>
 <table id="wizardTable">
 <tr>
-                                <td>Move</td>
+                                <td>Move</td>       
                                 <td>Fight</td>
                                 <td>Shoot</td>
                                 <td>Shield</td>

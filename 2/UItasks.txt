@@ -1,0 +1,4 @@
+1. Player name
+2. Player password
+3. Home button in Edit/New menus
+4. 

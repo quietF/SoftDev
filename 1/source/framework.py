@@ -42,15 +42,17 @@ def welcome_page():
 
 def sumband(createdband):
     total = 0#;  # useless semicolon
+    print(createdband['Captain']['Items'])
     for item in createdband['Captain']['Items']:
-        total = total + app.cost[item]  # replace with augmented assignment
+        total += app.cost[item]  # replace with augmented assignment
     if 'Ensign' in createdband.keys():
-        total = total + 250  # replace with augmented assignment
+        total += 250  # replace with augmented assignment
         for item in createdband['Captain']['Items']:  # This should be createdband['Ensign']['Items']
-            total = total + app.cost[item]  # replace with augmented assignment
+            total += app.cost[item]  # replace with augmented assignment
     for troop in createdband['Troops']:
         assert isinstance(troop, object)               # check troop's type
-        total = total + app.troops[troop]['Cost']  # replace with augmented assignment
+        total += app.troops[troop]['Cost']  # replace with augmented assignment
+    
     return total
 
 
@@ -80,7 +82,9 @@ def new_warband():
         createdband['Captain'] = dict(app.wizard['Captain'])
         createdband['Captain']['Specialism'] = capspec
         createdband['Captain']['Skillset'].append(capskill)  # = [capskill]
-        createdband['Captain']['Items'].append(capweap)  # = [capweap]
+        print(capweap)
+        if(capweap!='Empty'):
+            createdband['Captain']['Items'].append(capweap)  # = [capweap]
         if 'hasensign' in request.form.keys():
             ensspec = request.form['ensspec']
             ensskill = request.form['ensskill']
