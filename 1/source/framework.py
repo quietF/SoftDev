@@ -81,18 +81,18 @@ def new_warband():
         createdband['Name'] = bandname
         createdband['Captain'] = dict(app.wizard['Captain'])
         createdband['Captain']['Specialism'] = capspec
-        createdband['Captain']['Skillset'].append(capskill)  # = [capskill]
+        createdband['Captain']['Skillset'] = [capskill]
         print(capweap)
         if(capweap!='Empty'):
-            createdband['Captain']['Items'].append(capweap)  # = [capweap]
+            createdband['Captain']['Items'] = [capweap]
         if 'hasensign' in request.form.keys():
             ensspec = request.form['ensspec']
             ensskill = request.form['ensskill']
             ensweap = request.form['ensweap']
             createdband['Ensign'] = dict(app.apprentice['Ensign'])
             createdband['Ensign']['Specialism'] = ensspec
-            createdband['Ensign']['Skillset'].append(ensskill)  # = [capskill]
-            createdband['Ensign']['Items'].append(ensweap)  # = [capweap]
+            createdband['Ensign']['Skillset'] = [capskill]
+            createdband['Ensign']['Items'] = [capweap]
         createdband['Troops'] = []
         for item in troops:
             if item != "Empty":
@@ -150,6 +150,7 @@ def edit_given_warband(band):
         createdband['Captain'] = dict(app.wizard['Captain'])
         createdband['Captain']['Specialism'] = capspec
         createdband['Captain']['Skillset'].extend(skills)
+        print(len(createdband['Captain']['Items']))
         createdband['Captain']['Items'].append(capweap)
         createdband['Captain']['Move'] = capmov
         createdband['Captain']['Fight'] = capfig
