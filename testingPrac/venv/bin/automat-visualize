@@ -1,0 +1,10 @@
+#!/home/s1671778/Desktop/SoftDev/SoftDev/testingPrac/venv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'Automat==0.5.0','console_scripts','automat-visualize'
+__requires__ = 'Automat==0.5.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('Automat==0.5.0', 'console_scripts', 'automat-visualize')()
+    )
