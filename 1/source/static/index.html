@@ -6,8 +6,22 @@
 <body>
 <h1> FG Warband Manager </h1>
 <p>
-This bit will include the endpoints and some links to information.
+    This bit will include the endpoints and some links to information.<br>
+
+    Either enter with your player name and edit your old teams or create new ones, or see other player's teams.
 </p>
+
+<div class="login">
+        <h1>Login</h1>
+        <form method="post">
+            <input type="text" name="u" placeholder="Username" required="required" />
+            <input type="password" name="p" placeholder="Password" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+        </form>
+</div>
+
+
+
 <table>
 <tr><td>New Warband:</td><td><button onclick="window.location.href='/new'">New</button></td></tr>
 <tr><td>Edit Warband:</td><td><button onclick="window.location.href='/edit'">Load Existing</button></td></tr>
